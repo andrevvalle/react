@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<link rel="icon" href="http://andrevvalle.github.io/favicon.ico" type="image/x-icon"/>
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" />
 	<title>Test React</title>
 	<style type="text/css">
 		.test{
@@ -13,7 +14,13 @@
 </head>
 <body>
 	
-	<div id="main"></div>
+	<div class="container">
+		<div class="row">
+			
+			<div id="main"></div>
+			
+		</div>
+	</div>
 
 	<script src="bower_components/underscore/underscore-min.js"></script>
 	<script src="assets/js/react.js"></script>
@@ -22,6 +29,7 @@
 	<script src="bower_components/reflux/dist/reflux.min.js"></script>
 
 	<script src="assets/js/boot.js"></script>
-	<script src="assets/js/components.js"></script>
+	<script src="assets/js/application.js"></script>
+	<script src="assets/js/components.js" type="text/jsx"></script>
 </body>
 </html>

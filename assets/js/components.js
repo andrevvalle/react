@@ -1,25 +1,49 @@
-(function(Reflux, actions, global){
-    
-    var todoCounter = 0;
-    
+/** @jsx React.DOM */
 
-})(window.Reflux, window.Oi.Actions, window);
+(function(Reflux, Namespace, global){
+	
+	var App = React.createClass({
+		
+		mixins: [Reflux.connect(Namespace.store)],
+		getInitialState() {
+			return {
+				name: "",
+				age: 0
+			}
+		},
+		handleSubmit(event) {
+			event.preventDefault();
+			var age = this.state.age
+			
+			Namespace.store.onUpdateAge(age);
+		},
+		update(e) {
+			this.setState({age: e.target.value});
+		},
+		render() {
+			return (<FormRen 
+						name={this.state.person.name}
+						age={this.state.person.age}
+						change={this.update}
+						submit={this.handleSubmit} />);
+		}
 
-// var Hello = React.createClass({
-//     getInitialState: function(){
-//         return {
-//             condition: false
-//         }
-//     },
-//     handleClick :function(){
-//         this.setState( { condition : !this.state.condition } );
-//     },
-//     render: function() {
-// 		return 	<div>
-// 					<div className={this.state.condition ? "test" : ""}  >Hello {this.props.name}</div>
-// 					<button type="button" onClick={this.handleClick}>Toggle</button>
-// 				</div>;
-//     }
-// });
+	});
 
-// React.render(<Hello name="World" />, document.getElementById('main'));
+	var FormRen = React.createClass({
+		render() {
+			return (
+				<div>
+					<p>Name: {this.props.name}</p>
+					<p>Age: {this.props.age}</p>
+					<form className="form-inline" onSubmit={this.props.submit}>
+						<input type="number" className="form-control" ref="number" onChange={this.props.change} />
+						<input type="submit" className="btn" value="Update Age"/>
+					</form>
+				</div>);
+		}
+	});
+
+	React.render(<App />, document.getElementById('main'));
+
+})(window.Reflux, window.Oi, window);
